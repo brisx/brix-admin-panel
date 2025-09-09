@@ -5,8 +5,7 @@ WORKDIR /app
 # Copy package files first
 COPY package*.json ./
 
-# 🔥 CLEAN INSTALL - Remove existing node_modules and do fresh install
-RUN rm -rf node_modules package-lock.json
+# Install dependencies
 RUN npm install
 
 # Copy source code
@@ -20,8 +19,8 @@ ENV NEXT_PUBLIC_ADMIN_TOKEN=${NEXT_PUBLIC_ADMIN_TOKEN}
 ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-# Now build
-RUN npm run build
+# 🔥 DISABLE TURBOPACK - Use standard Webpack build
+RUN npm run build --no-turbopack
 
 EXPOSE 3000
 CMD ["npm", "start"]
