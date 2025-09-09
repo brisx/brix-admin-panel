@@ -78,7 +78,7 @@ export default function LiquidityCancellationsPage() {
       }
 
       // Fetch liquidity plans with cancel_requested status
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/liquidity/plans/active`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/liquidity/plans/active`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -167,7 +167,7 @@ export default function LiquidityCancellationsPage() {
         throw new Error('Invalid token format. Please login again.');
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/liquidity/plans/${selectedRequest.id}/approve-cancel`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/liquidity/plans/${selectedRequest.id}/approve-cancel`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ export default function LiquidityCancellationsPage() {
         throw new Error('Invalid token format. Please login again.');
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/liquidity/plans/${selectedRequest.id}/reject-cancel`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/liquidity/plans/${selectedRequest.id}/reject-cancel`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
