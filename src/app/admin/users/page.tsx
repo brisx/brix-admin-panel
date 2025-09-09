@@ -40,7 +40,7 @@ export default function UsersPage() {
         console.error('No admin token found');
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users?page=${currentPage}&limit=20`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/users?page=${currentPage}&limit=20`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
