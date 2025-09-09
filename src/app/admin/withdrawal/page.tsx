@@ -78,7 +78,7 @@ export default function WithdrawalPage() {
         console.error('No admin token found');
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/withdrawals?status=${filter}`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/withdrawals?status=${filter}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -108,7 +108,7 @@ export default function WithdrawalPage() {
         console.error('No admin token found');
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/withdrawals/${withdrawalId}`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/withdrawals/${withdrawalId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -140,7 +140,7 @@ export default function WithdrawalPage() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user-details/${userId}`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/user-details/${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
