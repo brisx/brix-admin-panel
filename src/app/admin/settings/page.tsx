@@ -45,7 +45,7 @@ export default function SettingsPage() {
         console.error('No admin token found');
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/settings`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/settings`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -77,7 +77,7 @@ export default function SettingsPage() {
         setMessage({ type: 'error', text: 'Not authenticated' });
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/settings`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/settings`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
