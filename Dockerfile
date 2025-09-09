@@ -29,6 +29,14 @@ ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
+
+
+
+# Add this before the build command to debug
+RUN echo "Checking environment variables..."
+RUN echo "CLERK_PUBLISHABLE: $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+RUN echo "API_URL: $NEXT_PUBLIC_API_URL"
+
 # Now build with all required environment variables
 RUN npm run build
 
