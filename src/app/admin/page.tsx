@@ -64,7 +64,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/achievements`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/achievements`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/cancellations`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/cancellations`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/dashboard/stats`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/dashboard/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
