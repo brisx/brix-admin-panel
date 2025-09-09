@@ -50,7 +50,7 @@ export default function PaymentSettingsPage() {
         window.location.href = '/admin/login';
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/settings`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/payments/settings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -106,7 +106,7 @@ export default function PaymentSettingsPage() {
       if (!token) {
         throw new Error('Not authenticated');
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/upload-qr`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/upload-qr`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData
@@ -154,7 +154,7 @@ export default function PaymentSettingsPage() {
       if (!token) {
         throw new Error('Not authenticated');
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/settings`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/payments/settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
