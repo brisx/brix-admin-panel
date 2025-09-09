@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       // Admin API endpoints to main app (port 3000)
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3000/api/:path*',
+        destination: 'https://purchase.brixs.live/api/:path*',
       },
     ];
   },
