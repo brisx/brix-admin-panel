@@ -40,7 +40,7 @@ export default function AdminLayout({
       console.log('Admin: Attempting login with credentials:', loginCredentials);
       console.log('Admin: API URL:', process.env.NEXT_PUBLIC_API_URL);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/login`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
