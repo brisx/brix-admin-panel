@@ -20,7 +20,7 @@ ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
 # 🔥 DISABLE TURBOPACK - Use standard Webpack build
-RUN npm run build --no-turbopack
+RUN npm run build
 
-EXPOSE 3000
+EXPOSE 3001
 CMD ["npm", "start"]
