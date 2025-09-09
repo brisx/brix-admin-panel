@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Trophy, CheckCircle, XCircle, Clock, Upload, Eye } from 'lucide-react';
 import { toast } from 'sonner';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://brixs-backend.up.railway.app';
+const API_BASE_URL = 'https://brixs-backend.up.railway.app';
 
 interface AchievementRewardRequest {
   id: string;
