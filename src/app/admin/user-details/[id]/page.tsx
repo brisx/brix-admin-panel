@@ -104,7 +104,7 @@ export default function UserDetailsPage() {
       console.log('🔍 Loading user details for ID:', params?.id);
       console.log('🌐 API URL:', `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user-details/${params?.id}`);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user-details/${params?.id}`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/admin/user-details/${params?.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
