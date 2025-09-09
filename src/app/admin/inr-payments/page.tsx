@@ -62,7 +62,7 @@ export default function InrPaymentsPage() {
         window.location.href = '/admin/login';
         return;
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/inr-request`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/payments/inr-request`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -96,7 +96,7 @@ export default function InrPaymentsPage() {
       if (!token) {
         throw new Error('Not authenticated');
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/inr-request/${selectedRequest.id}/approve`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/payments/inr-request/${selectedRequest.id}/approve`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ export default function InrPaymentsPage() {
       if (!token) {
         throw new Error('Not authenticated');
       }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/inr-request/${selectedRequest.id}/reject`, {
+      const response = await fetch(`https://brixs-backend.up.railway.app/api/payments/inr-request/${selectedRequest.id}/reject`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
