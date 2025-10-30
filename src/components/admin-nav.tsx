@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Settings, BarChart2, CreditCard, IndianRupee, Wallet, XCircle, Trophy } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, BarChart2, CreditCard, IndianRupee, Wallet, XCircle, Trophy, Network } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Users', href: '/admin/users', icon: Users },
+  { name: 'Referrals', href: '/admin/referrals', icon: Network },
   { name: 'Achievement Rewards', href: '/admin/achievement-rewards', icon: Trophy },
   { name: 'Withdrawal', href: '/admin/withdrawal', icon: CreditCard },
   { name: 'Liquidity Cancellations', href: '/admin/liquidity-cancellations', icon: XCircle },
