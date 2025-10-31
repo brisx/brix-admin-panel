@@ -157,9 +157,7 @@ export default function AdminLayout({
             </button>
           </form>
 
-          <div className="mt-4 text-center text-sm text-slate-400">
-            <p>Default credentials: admin / admin123</p>
-          </div>
+          
         </div>
       </div>
     );
