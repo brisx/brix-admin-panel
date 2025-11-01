@@ -165,7 +165,7 @@ export default function AdminLayout({
 
   return (
     <div className="flex h-screen bg-slate-900 text-slate-100">
-      <AdminNav />
+      {/* <AdminNav /> */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="bg-slate-800/50 border-b border-slate-700 p-4 flex justify-between items-center">
           <h1 className="text-xl font-semibold">BRiX Admin Panel</h1>
