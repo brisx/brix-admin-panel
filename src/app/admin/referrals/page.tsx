@@ -186,18 +186,18 @@ export default function ReferralsPage() {
             <CheckCircle className="h-4 w-4 mr-2" />
             Rewards
           </TabsTrigger>
-          <TabsTrigger value="analytics" className="data-[state=active]:bg-cyan-600">
+          {/* <TabsTrigger value="analytics" className="data-[state=active]:bg-cyan-600">
             <TrendingUp className="h-4 w-4 mr-2" />
             Analytics
-          </TabsTrigger>
-          <TabsTrigger value="network" className="data-[state=active]:bg-cyan-600">
+          </TabsTrigger> */}
+          {/* <TabsTrigger value="network" className="data-[state=active]:bg-cyan-600">
             <Network className="h-4 w-4 mr-2" />
             Network
-          </TabsTrigger>
-          <TabsTrigger value="settings" className="data-[state=active]:bg-cyan-600">
+          </TabsTrigger> */}
+          {/* <TabsTrigger value="settings" className="data-[state=active]:bg-cyan-600">
             <Settings className="h-4 w-4 mr-2" />
             Settings
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
