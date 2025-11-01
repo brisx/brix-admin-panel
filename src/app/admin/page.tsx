@@ -405,7 +405,9 @@ export default function AdminDashboard() {
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-white">{transaction.type || 'Transaction'}</p>
-                    <p className="text-sm text-slate-400">{transaction.description || `Transaction #${transaction.id}`}</p>
+                    <p className="text-sm text-slate-400">
+                      {(transaction.description?.replace(/APY/gi, 'Monthly')) || `Transaction #${transaction.id}`}
+                    </p>  
                     <p className="text-xs text-slate-500 mt-1">{new Date(transaction.createdAt).toLocaleString()}</p>
                   </div>
                 </div>
