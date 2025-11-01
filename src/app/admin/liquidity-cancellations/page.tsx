@@ -385,7 +385,7 @@ export default function LiquidityCancellationsPage() {
                           {request.user?.username || request.user?.email || `User ${request.userId}`}
                         </div>
                         <div className="text-sm text-slate-400">
-                          {formatCurrency(request.amount)} • {request.apy}% APY
+                          {formatCurrency(request.amount)} • {request.apy}% Monthly
                         </div>
                       </div>
                       {getStatusBadge(request.status)}
@@ -417,7 +417,7 @@ export default function LiquidityCancellationsPage() {
                   <p className="text-white font-semibold">{formatCurrency(selectedRequest.amount)}</p>
                 </div>
                 <div>
-                  <p className="text-slate-400">APY</p>
+                  <p className="text-slate-400">Monthly</p>
                   <p className="text-white">{selectedRequest.apy}%</p>
                 </div>
                 <div>
