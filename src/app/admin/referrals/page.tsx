@@ -32,20 +32,33 @@ interface ReferralStats {
   totalEarnings: number;
 }
 
+interface RecentActivity {
+  id: string;
+  type: 'reward_created' | 'reward_approved' | 'level_completed';
+  description: string;
+  timestamp: string;
+  user: string;
+  amount?: number;
+  currency?: string;
+  level?: number;
+}
+
 export default function ReferralsPage() {
   const [stats, setStats] = useState<ReferralStats | null>(null);
+  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     loadReferralStats();
+    loadRecentActivity();
   }, []);
 
   const loadReferralStats = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('admin_token');
-      
+
       if (!token) {
         console.error('No admin token found');
         return;
@@ -65,6 +78,30 @@ export default function ReferralsPage() {
       console.error('Error loading referral stats:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadRecentActivity = async () => {
+    try {
+      const token = localStorage.getItem('admin_token');
+
+      if (!token) {
+        console.error('No admin token found');
+        return;
+      }
+
+      const response = await fetch('https://brixs-backend.up.railway.app/api/admin/referral-rewards/recent-activity', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setRecentActivity(data.data || []);
+      }
+    } catch (error) {
+      console.error('Error loading recent activity:', error);
     }
   };
 
@@ -168,32 +205,40 @@ export default function ReferralsPage() {
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white">Recent Activity</CardTitle>
-                <CardDescription>Latest referral activities</CardDescription>
+                <CardDescription>Latest referral activities from the last 24 hours</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm text-white">New referral reward created</p>
-                      <p className="text-xs text-slate-400">2 minutes ago</p>
-                    </div>
+                {recentActivity.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-slate-400">No recent activity</p>
+                    <p className="text-xs text-slate-500 mt-1">Activity will appear here as users interact with the referral system</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm text-white">Level 2 completion achieved</p>
-                      <p className="text-xs text-slate-400">15 minutes ago</p>
-                    </div>
+                ) : (
+                  <div className="space-y-4">
+                    {recentActivity.map((activity) => (
+                      <div key={activity.id} className="flex items-center gap-3">
+                        <div className={`w-2 h-2 rounded-full ${
+                          activity.type === 'reward_created' ? 'bg-green-400' :
+                          activity.type === 'reward_approved' ? 'bg-blue-400' :
+                          'bg-purple-400'
+                        }`}></div>
+                        <div className="flex-1">
+                          <p className="text-sm text-white">
+                            {activity.description}
+                            {activity.amount && activity.currency && (
+                              <span className="text-green-400 ml-1">
+                                ({activity.amount} {activity.currency})
+                              </span>
+                            )}
+                          </p>
+                          <p className="text-xs text-slate-400">
+                            {new Date(activity.timestamp).toLocaleString()} • {activity.user}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                    <div className="flex-1">
-                      <p className="text-sm text-white">USDT reward approved</p>
-                      <p className="text-xs text-slate-400">1 hour ago</p>
-                    </div>
-                  </div>
-                </div>
+                )}
               </CardContent>
             </Card>
 
@@ -203,26 +248,45 @@ export default function ReferralsPage() {
                 <CardDescription>Common referral management tasks</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button 
-                  className="w-full justify-start bg-slate-700 hover:bg-slate-600"
-                  onClick={() => setActiveTab('rewards')}
+                <Button
+                  className="w-full justify-start bg-green-600 hover:bg-green-700"
+                  onClick={() => {
+                    setActiveTab('rewards');
+                    // Could add logic to highlight pending rewards
+                  }}
                 >
                   <CheckCircle className="h-4 w-4 mr-2" />
-                  Approve Pending Rewards
+                  Approve Pending Rewards ({stats?.pendingRewards || 0})
                 </Button>
-                <Button 
-                  className="w-full justify-start bg-slate-700 hover:bg-slate-600"
-                  onClick={() => setActiveTab('analytics')}
+                <Button
+                  className="w-full justify-start bg-blue-600 hover:bg-blue-700"
+                  onClick={() => {
+                    setActiveTab('analytics');
+                    // Could trigger analytics refresh
+                  }}
                 >
                   <TrendingUp className="h-4 w-4 mr-2" />
                   View Analytics
                 </Button>
-                <Button 
-                  className="w-full justify-start bg-slate-700 hover:bg-slate-600"
-                  onClick={() => setActiveTab('network')}
+                <Button
+                  className="w-full justify-start bg-purple-600 hover:bg-purple-700"
+                  onClick={() => {
+                    setActiveTab('network');
+                    // Could trigger network data refresh
+                  }}
                 >
                   <Network className="h-4 w-4 mr-2" />
-                  Explore Network
+                  Explore Network ({stats?.totalReferrals || 0} users)
+                </Button>
+                <Button
+                  className="w-full justify-start bg-orange-600 hover:bg-orange-700"
+                  onClick={() => {
+                    setActiveTab('settings');
+                    // Could open settings with focus on critical configs
+                  }}
+                >
+                  <Settings className="h-4 w-4 mr-2" />
+                  Configure Settings
                 </Button>
               </CardContent>
             </Card>
