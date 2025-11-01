@@ -242,7 +242,7 @@ export default function ReferralsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-slate-700">
+            {/* <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white">Quick Actions</CardTitle>
                 <CardDescription>Common referral management tasks</CardDescription>
@@ -289,7 +289,7 @@ export default function ReferralsPage() {
                   Configure Settings
                 </Button>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </TabsContent>
 
