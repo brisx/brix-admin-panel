@@ -33,7 +33,7 @@ export default function RootLayout({
               <div className="container mx-auto px-4 py-4">
                 <div className="flex items-center justify-between">
                   <h1 className="text-xl font-bold">BRiX Admin</h1>
-                  <MainNav />
+                  {/* <MainNav /> */}
                 </div>
               </div>
             </header>
