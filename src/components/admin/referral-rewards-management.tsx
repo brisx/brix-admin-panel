@@ -1,8 +1,8 @@
-'use client'; 
+'use client';
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button'; 
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '../ui/label';
 import { Badge } from '@/components/ui/badge';
@@ -44,20 +44,21 @@ export function ReferralRewardsManagement({ onStatsUpdate }: ReferralRewardsMana
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'credited'>('pending');
 
   useEffect(() => {
-    fetchPendingRewards();
+    fetchAllRewards();
   }, []);
 
-  const fetchPendingRewards = async () => {
+  const fetchAllRewards = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('admin_token');
-      
+
       if (!token) {
         toast.error('Not authenticated');
         return;
       }
 
-      const response = await fetch('https://brixs-backend.up.railway.app/api/admin/referral-rewards/pending', {
+      // Fetch ALL rewards (not just pending) to show in different tabs
+      const response = await fetch('https://brixs-backend.up.railway.app/api/admin/referral-rewards/all', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -76,8 +77,8 @@ export function ReferralRewardsManagement({ onStatsUpdate }: ReferralRewardsMana
         toast.error('Failed to load rewards');
       }
     } catch (error) {
-      console.error('Error fetching pending rewards:', error);
-      toast.error('Failed to load pending rewards');
+      console.error('Error fetching rewards:', error);
+      toast.error('Failed to load rewards');
     } finally {
       setLoading(false);
     }
@@ -122,7 +123,7 @@ export function ReferralRewardsManagement({ onStatsUpdate }: ReferralRewardsMana
         setDialogOpen(false);
         setAdminTxnId('');
         setSelectedReward(null);
-        await fetchPendingRewards();
+        await fetchAllRewards();
         onStatsUpdate();
       } else {
         const errorData = await response.json();
